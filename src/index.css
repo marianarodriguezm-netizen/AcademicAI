@@ -1,0 +1,67 @@
+
+/* =========================================
+   ACADEMICAI - ESTILOS GENERALES
+========================================= */
+
+:root {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #102c59;
+  background: #f5f8ff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* REINICIO GENERAL */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ESTRUCTURA DE LA PÁGINA */
+
+html {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* CONTENEDOR DE REACT */
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ELEMENTOS DE FORMULARIO */
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* ENLACES */
+
+a {
+  text-decoration: none;
+}
+
+/* IMÁGENES */
+
+img {
+  max-width: 100%;
+  display: block;
+}
