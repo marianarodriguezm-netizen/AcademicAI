@@ -54,7 +54,15 @@ function Registro({ onVolver }) {
 
             setMensaje("¡Tu cuenta fue creada correctamente!");
         } catch (error) {
-            setMensaje("No se pudo crear la cuenta: " + error.message);
+            if (error.code === "auth/email-already-in-use") {
+                setMensaje("Este correo ya está registrado. Por favor, regresa e inicia sesión.");
+            } else if (error.code === "auth/weak-password") {
+                setMensaje("La contraseña debe tener al menos 6 caracteres.");
+            } else if (error.code === "auth/invalid-email") {
+                setMensaje("El formato del correo electrónico no es válido.");
+            } else {
+                setMensaje("No se pudo crear la cuenta: " + error.message);
+            }
         }
     };
 

@@ -19,16 +19,24 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-if (import.meta.env.DEV) {
-    self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
-}
+let appCheck;
+if (typeof window !== "undefined") {
+    if (import.meta.env.DEV) {
+        self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+    }
 
-const appCheck = initializeAppCheck(app, {
-    provider: new ReCaptchaEnterpriseProvider(
-        import.meta.env.VITE_RECAPTCHA_ENTERPRISE_SITE_KEY
-    ),
-    isTokenAutoRefreshEnabled: true
-});
+    const siteKey = import.meta.env.VITE_RECAPTCHA_ENTERPRISE_SITE_KEY;
+    if (siteKey) {
+        try {
+            appCheck = initializeAppCheck(app, {
+                provider: new ReCaptchaEnterpriseProvider(siteKey),
+                isTokenAutoRefreshEnabled: true
+            });
+        } catch (error) {
+            console.warn("App Check no pudo inicializarse:", error);
+        }
+    }
+}
 
 const ai = getAI(app, {
     backend: new GoogleAIBackend()
